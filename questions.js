@@ -1,32 +1,29 @@
 const questions = [
   {
-    id: 1,
-    text: "Do you have Verizon service available?",
-    hasFollowUp: true,
-    followUpText: "Does Verizon provide a strong connection at your location?"
+    question: 'Do you have Verizon service available?',
+    type: 'yesno',
+    followUp: 'Does this carrier provide a strong connection at your location?',
+    provider: 'verizon',
   },
   {
-    id: 2,
-    text: "Do you have T-Mobile service available?",
-    hasFollowUp: true,
-    followUpText: "Does T-Mobile provide a strong connection at your location?"
+    question: 'Do you have T-Mobile service available?',
+    type: 'yesno',
+    followUp: 'Does this carrier provide a strong connection at your location?',
+    provider: 'tmobile',
   },
   {
-    id: 3,
-    text: "Do you have AT&T service available?",
-    hasFollowUp: true,
-    followUpText: "Does AT&T provide a strong connection at your location?"
+    question: 'Do you have AT&T service available?',
+    type: 'yesno',
+    followUp: 'Does this carrier provide a strong connection at your location?',
+    provider: 'att',
   },
   {
-    id: 4,
-    text: "Do you have Starlink available?",
-    hasFollowUp: false,
-    followUpText: ""
+    question: 'Do you have Starlink available?',
+    type: 'yesno',
+    provider: 'starlink',
   },
   {
-    id: 5,
-    text: "Are you comfortable trying unofficial (but legal) workarounds to getting access to rural internet?",
-    hasFollowUp: false,
-    followUpText: ""
-  }
+    question: 'Are you comfortable trying unofficial (but legal) workarounds to getting access to rural internet?',
+    type: 'yesno',
+  },
 ];
