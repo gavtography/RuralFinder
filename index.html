@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8">
 	<title>Rural Internet Provider Quiz</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-	<div id="question-container">
-		<div id="question-text"></div>
-		<div id="button-container">
-			<button id="yes-button">Yes</button>
-			<button id="no-button">No</button>
-		</div>
-	</div>
+	<h1>Rural Internet Provider Quiz</h1>
 
-	<div id="result-container">
-		<div id="result-text"></div>
-		<div id="additional-text"></div>
+	<form id="quiz-form">
+		<div id="question-container">
+			<!-- Questions will be dynamically inserted here -->
+		</div>
+		<button id="submit-btn" type="submit">Submit</button>
+	</form>
+
+	<div id="result-container" class="hidden">
+		<h2>Your Best Rural Internet Provider:</h2>
+		<p id="result-text"></p>
 	</div>
 
 	<script type="text/javascript" src="questions.js"></script>
