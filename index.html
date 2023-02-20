@@ -1,27 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Rural Internet Provider Quiz</title>
-	<link rel="stylesheet" type="text/css" href="styles.css">
+  <meta charset="UTF-8">
+  <title>Rural Internet Provider Quiz</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-	<h1>Rural Internet Provider Quiz</h1>
+  <h1>Rural Internet Provider Quiz</h1>
+  <form id="quiz-form">
+    <div id="question-container"></div>
+    <button type="submit">Submit</button>
+  </form>
 
-	<form id="quiz-form">
-		<div id="question-container">
-			<!-- Questions will be dynamically inserted here -->
-		</div>
-		<button id="submit-btn" type="submit">Submit</button>
-	</form>
-
-	<div id="result-container" class="hidden">
-		<h2>Your Best Rural Internet Provider:</h2>
-		<p id="result-text"></p>
-	</div>
-
-	<script type="text/javascript" src="questions.js"></script>
-	<script type="text/javascript" src="providers.js"></script>
-	<script type="text/javascript" src="app.js"></script>
+  <script src="questions.js"></script>
+  <script src="providers.js"></script>
+  <script src="app.js"></script>
 </body>
+
 </html>
