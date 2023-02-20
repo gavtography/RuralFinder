@@ -1,96 +1,137 @@
-// Get the DOM elements
+// Questionnaire questions and answers
+const questions = [
+	{
+		text: "Do you have Verizon service available?",
+		followup: "Does this carrier provide a strong connection at your location?"
+	},
+	{
+		text: "Do you have T-Mobile service available?",
+		followup: "Does this carrier provide a strong connection at your location?"
+	},
+	{
+		text: "Do you have AT&T service available?",
+		followup: "Does this carrier provide a strong connection at your location?"
+	},
+	{
+		text: "Do you have Starlink available?"
+	},
+	{
+		text: "Are you comfortable trying unofficial (but legal) workarounds to getting access to rural internet?"
+	}
+];
+
+const answers = {
+	verizon: {
+		yes: {
+			noWorkaround: "Verizon 4G or Verizon 5G Home Internet",
+			workaround: "Verizon 4G Home Internet or a Visible sim card in an LTE router"
+		},
+		no: {
+			message: "Verizon 4G or Verizon 5G Home Internet with an LTE router and external antenna modification may be required"
+		}
+	},
+	tmobile: {
+		yes: {
+			noWorkaround: "T-Mobile Home Internet or Calyx Institute Internet Membership",
+			workaround: "T-Mobile Home Internet or Calyx Institute Internet Membership"
+		},
+		no: {
+			message: "T-Mobile Home Internet or Calyx Institute Internet Membership with an LTE router and external antenna modification may be required"
+		}
+	},
+	att: {
+		yes: {
+			noWorkaround: "non-unlimited AT&T fixed wireless",
+			workaround: "AT&T Business Wireless Essentials"
+		},
+		no: {
+			message: "non-unlimited AT&T fixed wireless with an LTE router and external antenna modification may be required"
+		}
+	},
+	starlink: {
+		yes: {
+			noWorkaround: "Starlink",
+			workaround: "Starlink"
+		},
+		no: {
+			message: "Starlink RV. Visit the FCC Broadband Map to check other options."
+		}
+	}
+};
+
+// DOM elements
+const questionContainer = document.getElementById("question-container");
 const questionText = document.getElementById("question-text");
-const answerButtons = document.querySelectorAll(".answer-button");
-const submitButton = document.getElementById("submit-button");
+const buttonContainer = document.getElementById("button-container");
+const yesButton = document.getElementById("yes-button");
+const noButton = document.getElementById("no-button");
+const resultContainer = document.getElementById("result-container");
+const resultText = document.getElementById("result-text");
+const additionalText = document.getElementById("additional-text");
 
-// Set up the initial state
-let currentQuestion = 0;
-let answers = [];
-
-// Load the questions from data.js
-const questions = data.questions;
-
-// Add event listeners to answer buttons
-answerButtons.forEach((button) => {
-  button.addEventListener("click", (event) => {
-    // Save the answer and go to the next question
-    answers.push(event.target.value === "yes");
-    currentQuestion++;
-    // If there are more questions, display the next question
-    if (currentQuestion < questions.length) {
-      showQuestion(questions[currentQuestion]);
-    } else {
-      // Otherwise, show the result
-      showResult();
-    }
-  });
-});
-
-// Add event listener to submit button
-submitButton.addEventListener("click", (event) => {
-  // Prevent the form from submitting
-  event.preventDefault();
-  // Start the questionnaire
-  showQuestion(questions[currentQuestion]);
-});
-
-// Show a question
-function showQuestion(question) {
-  // Show the question text
-  questionText.textContent = question.text;
-  // Hide the result
-  document.getElementById("result-container").classList.add("hidden");
-  // Show the answer buttons
-  answerButtons[0].textContent = question.yes;
-  answerButtons[0].value = "yes";
-  answerButtons[1].textContent = question.no;
-  answerButtons[1].value = "no";
+// Helper functions
+function hideElement(element) {
+	element.style.display = "none";
 }
 
-// Show the result
-function showResult() {
-  // Determine the result based on the answers
-  const result = getResult(answers);
-  // Show the result text
-  const resultText = document.getElementById("result-text");
-  resultText.textContent = result.text;
-  // Show the additional text if necessary
-  const additionalText = document.getElementById("additional-text");
-  additionalText.textContent = result.additionalText || "";
-  // Show the result container
-  const resultContainer = document.getElementById("result-container");
-  resultContainer.classList.remove("hidden");
-  // Hide the question container
-  questionText.textContent = "";
-  answerButtons[0].textContent = "";
-  answerButtons[1].textContent = "";
+function showElement(element) {
+	element.style.display = "block";
 }
 
-// Get the result based on the answers
-function getResult(answers) {
+function setResult(result) {
+	resultText.innerText = result;
+	showElement(resultContainer);
+}
+
+function handleAnswer(answer) {
+	if (currentQuestion === 0) {
+		if (answer === "yes") {
+			showElement(questionContainer);
+			questionText.innerText = questions[currentQuestion].followup;
+			currentQuestion++;
+		} else {
+			setResult(answers.starlink.no.message);
+		}
+	} else if (currentQuestion === questions.length - 1) {
+		if (answer === "yes") {
+			setResult(answers.starlink.workaround);
+		} else {
+			setResult(answers.starlink.noWorkaround);
+		}
+	} else {
+		if (answer === "yes") {
+			showElement(questionContainer);
+			questionText.innerText = questions[currentQuestion].followup;
+		}
+function getResult() {
   let result;
-  if (answers[0] === true && !answers[4]) {
-    if (answers[3] === true) {
-      result = answers[1] === true ? data.results.verizonWorkaround : data.results.verizonNoWorkaround;
-    } else {
-      result = data.results.lteRouter;
-    }
-  } else if (answers[1] === true && !answers[4]) {
-    if (answers[3] === true) {
-      result = data.results.tMobile;
-    } else {
-      result = data.results.lteRouter;
-    }
-  } else if (answers[2] === true && !answers[4]) {
-    if (answers[3] === true) {
-      result = answers[1] === true ? data.results.attWorkaround : data.results.attNoWorkaround;
-    } else {
-      result = data.results.attFixed;
-    }
-  } else if (answers[3] === true) {
-    result = data.results.starlink;
+  if (verizonAvailable && !comfortableWithWorkarounds) {
+    result = "Verizon 4G or Verizon 5G Home Internet";
+  } else if (verizonAvailable && comfortableWithWorkarounds) {
+    result = "Verizon 4G Home Internet or a Visible sim card in an LTE router";
+  } else if (tmobileAvailable && !comfortableWithWorkarounds) {
+    result = "T-Mobile Home Internet or Calyx Institute Internet Membership";
+  } else if (tmobileAvailable && comfortableWithWorkarounds) {
+    result = "T-Mobile Home Internet or Calyx Institute Internet Membership";
+  } else if (attAvailable && !comfortableWithWorkarounds) {
+    result = "non-unlimited AT&T fixed wireless";
+  } else if (attAvailable && comfortableWithWorkarounds) {
+    result = "AT&T Business Wireless Essentials";
+  } else if (starlinkAvailable) {
+    result = "Starlink";
   } else {
-    result = data.results.starlinkRV;
+    result = "Starlink RV. Also suggest to visit the FCC Broadband Map to check their options.";
+  }
+  if (!strongConnection) {
+    result += " LTE router with external antenna or external antenna modification to hardware may be required";
   }
   return result;
+}
+
+function showResult() {
+  const result = getResult();
+  const resultElement = document.getElementById("result");
+  resultElement.innerText = result;
+  resultElement.style.display = "block";
+  document.getElementById("question-form").style.display = "none";
 }
