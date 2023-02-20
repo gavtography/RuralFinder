@@ -1,74 +1,69 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Rural Internet Provider Questionnaire</title>
-    <script src="data.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <title>Rural Internet Questionnaire</title>
   </head>
   <body>
-    <h1>Rural Internet Provider Questionnaire</h1>
-    <form id="questionnaire">
-      <h2>Question 1:</h2>
-      <p>Do you have Verizon service available?</p>
-      <label>
-        <input type="radio" name="q1" value="yes">
-        Yes
-      </label>
-      <label>
-        <input type="radio" name="q1" value="no">
-        No
-      </label>
-
-      <h2>Question 2:</h2>
-      <p>Do you have T-Mobile service available?</p>
-      <label>
-        <input type="radio" name="q2" value="yes">
-        Yes
-      </label>
-      <label>
-        <input type="radio" name="q2" value="no">
-        No
-      </label>
-
-      <h2>Question 3:</h2>
-      <p>Do you have AT&T service available?</p>
-      <label>
-        <input type="radio" name="q3" value="yes">
-        Yes
-      </label>
-      <label>
-        <input type="radio" name="q3" value="no">
-        No
-      </label>
-
-      <div id="q4">
-        <h2>Question 4:</h2>
-        <p>Do you have Starlink available?</p>
-        <label>
-          <input type="radio" name="q4" value="yes">
-          Yes
-        </label>
-        <label>
-          <input type="radio" name="q4" value="no">
-          No
-        </label>
+    <h1>Rural Internet Questionnaire</h1>
+    <form id="questionnaire-form">
+      <!-- First question -->
+      <div>
+        <label for="verizon-available">Do you have Verizon service available?</label>
+        <div>
+          <input type="radio" name="verizon-available" value="yes"> Yes
+          <input type="radio" name="verizon-available" value="no"> No
+        </div>
       </div>
-
-      <h2>Question 5:</h2>
-      <p>Are you comfortable trying unofficial (but legal) workarounds to getting access to rural internet?</p>
-      <label>
-        <input type="radio" name="q5" value="yes">
-        Yes
-      </label>
-      <label>
-        <input type="radio" name="q5" value="no">
-        No
-      </label>
-
+      
+      <!-- Second question -->
+      <div>
+        <label for="t-mobile-available">Do you have T-Mobile service available?</label>
+        <div>
+          <input type="radio" name="t-mobile-available" value="yes"> Yes
+          <input type="radio" name="t-mobile-available" value="no"> No
+        </div>
+      </div>
+      
+      <!-- Third question -->
+      <div>
+        <label for="at-t-available">Do you have AT&amp;T service available?</label>
+        <div>
+          <input type="radio" name="at-t-available" value="yes"> Yes
+          <input type="radio" name="at-t-available" value="no"> No
+        </div>
+      </div>
+      
+      <!-- Follow-up question if any of the first 3 questions are answered with "Yes" -->
+      <div class="follow-up" style="display:none;">
+        <label for="strong-connection">Does this carrier provide a strong connection at your location?</label>
+        <div>
+          <input type="radio" name="strong-connection" value="yes"> Yes
+          <input type="radio" name="strong-connection" value="no"> No
+        </div>
+      </div>
+      
+      <!-- Fourth question -->
+      <div>
+        <label for="starlink-available">Do you have Starlink available?</label>
+        <div>
+          <input type="radio" name="starlink-available" value="yes"> Yes
+          <input type="radio" name="starlink-available" value="no"> No
+        </div>
+      </div>
+      
+      <!-- Fifth question -->
+      <div>
+        <label for="workarounds">Are you comfortable trying unofficial (but legal) workarounds to getting access to rural internet?</label>
+        <div>
+          <input type="radio" name="workarounds" value="yes"> Yes
+          <input type="radio" name="workarounds" value="no"> No
+        </div>
+      </div>
+      
       <button type="submit">Submit</button>
     </form>
-
+    
+    <script src="data.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
-
