@@ -1,50 +1,35 @@
 body {
-	font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    margin: 2em;
 }
 
 #question-container {
-	margin: 50px auto;
-	text-align: center;
+    margin-bottom: 1em;
 }
 
-#question-text {
-	margin-bottom: 30px;
+.question {
+    margin-bottom: 1em;
 }
 
-#button-container {
-	display: flex;
-	justify-content: center;
-}
-
-button {
-	padding: 10px 20px;
-	border-radius: 5px;
-	font-size: 18px;
-	margin: 0 10px;
-}
-
-#yes-button {
-	background-color: #5cb85c;
-	border: none;
-	color: white;
-}
-
-#no-button {
-	background-color: #d9534f;
-	border: none;
-	color: white;
+.hidden {
+    display: none;
 }
 
 #result-container {
-	display: none;
-	margin: 50px auto;
-	text-align: center;
+    margin: 2em;
+    text-align: center;
 }
 
 #result-text {
-	margin-bottom: 30px;
-}
-
-#additional-text {
-	font-style: italic;
+    font-size: 1.2em;
+    font-weight: bold;
 }
