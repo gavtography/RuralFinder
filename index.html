@@ -1,25 +1,74 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Questionnaire</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Rural Internet Provider Questionnaire</title>
+    <script src="data.js"></script>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="container">
-      <h1>Questionnaire</h1>
-      <div class="question">
-        <span id="questionNumber"></span>
-        <span id="questionText"></span>
+    <h1>Rural Internet Provider Questionnaire</h1>
+    <form id="questionnaire">
+      <h2>Question 1:</h2>
+      <p>Do you have Verizon service available?</p>
+      <label>
+        <input type="radio" name="q1" value="yes">
+        Yes
+      </label>
+      <label>
+        <input type="radio" name="q1" value="no">
+        No
+      </label>
+
+      <h2>Question 2:</h2>
+      <p>Do you have T-Mobile service available?</p>
+      <label>
+        <input type="radio" name="q2" value="yes">
+        Yes
+      </label>
+      <label>
+        <input type="radio" name="q2" value="no">
+        No
+      </label>
+
+      <h2>Question 3:</h2>
+      <p>Do you have AT&T service available?</p>
+      <label>
+        <input type="radio" name="q3" value="yes">
+        Yes
+      </label>
+      <label>
+        <input type="radio" name="q3" value="no">
+        No
+      </label>
+
+      <div id="q4">
+        <h2>Question 4:</h2>
+        <p>Do you have Starlink available?</p>
+        <label>
+          <input type="radio" name="q4" value="yes">
+          Yes
+        </label>
+        <label>
+          <input type="radio" name="q4" value="no">
+          No
+        </label>
       </div>
-      <div class="answer">
-        <button id="yesButton">Yes</button>
-        <button id="noButton">No</button>
-      </div>
-      <div class="counter">
-        <span id="count"></span>
-      </div>
-    </div>
-    <script src="data.js"></script>
+
+      <h2>Question 5:</h2>
+      <p>Are you comfortable trying unofficial (but legal) workarounds to getting access to rural internet?</p>
+      <label>
+        <input type="radio" name="q5" value="yes">
+        Yes
+      </label>
+      <label>
+        <input type="radio" name="q5" value="no">
+        No
+      </label>
+
+      <button type="submit">Submit</button>
+    </form>
+
     <script src="script.js"></script>
   </body>
 </html>
+
