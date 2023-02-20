@@ -1,21 +1,16 @@
-const quizData = [
-  {
-    question: "What is your favorite color?",
-    answers: [
-      { text: "Red", value: "red" },
-      { text: "Blue", value: "blue" },
-      { text: "Green", value: "green" },
-      { text: "Yellow", value: "yellow" },
-    ],
-  },
-  {
-    question: "What is your favorite animal?",
-    answers: [
-      { text: "Dog", value: "dog" },
-      { text: "Cat", value: "cat" },
-      { text: "Bird", value: "bird" },
-      { text: "Fish", value: "fish" },
-    ],
-  },
-  // Add more questions and answers as needed
+const questions = [
+  { text: "Do you like the outdoors?", answer: null },
+  { text: "Do you like to play?", answer: null },
+  { text: "Do you like to sit around all day?", answer: null },
 ];
+
+const results = {
+  "000": "Your favorite pet is probably cats",
+  "001": "Your favorite pet is probably birds",
+  "010": "Your favorite pet is probably fish",
+  "011": "Your favorite pet is probably hamsters",
+  "100": "Your favorite pet is probably dogs",
+  "101": "Your favorite pet is probably snakes",
+  "110": "Your favorite pet is probably rabbits",
+  "111": "Your favorite pet is probably turtles",
+};
