@@ -37,15 +37,19 @@ function renderQuestion(index) {
   }
 }
 
-// Function to render the result based on the user's answers
+// Function to render the result of the quiz
 function renderResult() {
-  // Use the providers object to determine the best rural internet provider based on the user's answers
-  const result = providers.getResult(answers);
+  // Call the getResult function from providers.js and pass in the user's answers
+  const result = getResult(answers);
 
-  // Clear the question container and show the result in the result container
+  // Clear the question container and create a new result element
   questionContainer.innerHTML = '';
-  resultContainer.innerHTML = result;
+  const resultElement = document.createElement('div');
+  resultElement.classList.add('result');
+  resultElement.innerHTML = `We recommend the following rural internet provider: <strong>${result}</strong>`;
+  questionContainer.appendChild(resultElement);
 }
 
-// Call renderQuestion to start the questionnaire
+// Call the renderQuestion function with an initial index of 0 to start the quiz
 renderQuestion(0);
+
