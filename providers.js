@@ -1,31 +1,46 @@
-function getBestProvider(answers) {
-  const verizonAvailable = answers[0] === "yes" || answers[1] === "yes" || answers[2] === "yes";
-  const tmobileAvailable = answers[1] === "yes";
-  const attAvailable = answers[2] === "yes";
-  const starlinkAvailable = answers[3] === "yes";
-  const comfortableWithWorkarounds = answers[4] === "yes";
+function getResult(answers) {
+  let provider = '';
 
-  if (verizonAvailable) {
-    const verizonStrongConnection = answers[0] === "yes" && parseInt(answers[0], 10) >= 3;
-    const verizonResult = comfortableWithWorkarounds ? "Verizon 4G Home Internet or a Visible sim card in an LTE router" : "Verizon 4G or Verizon 5G Home Internet";
-    return verizonStrongConnection ? verizonResult : `${verizonResult}. LTE router with external antenna or external antenna modification to hardware may be required.`;
+  // Check if Verizon is available
+  if (answers[0]) {
+    // Check if Verizon provides a strong connection
+    if (answers[3]) {
+      provider = 'Verizon 5G Home Internet';
+    } else {
+      provider = 'Verizon 4G Home Internet or Visible sim card in an LTE router (if comfortable with workarounds)';
+    }
+  }
+  // Check if T-Mobile is available
+  else if (answers[1]) {
+    // Check if T-Mobile provides a strong connection
+    if (answers[4]) {
+      provider = 'T-Mobile Home Internet or Calyx Institute Internet Membership';
+    } else {
+      provider = 'T-Mobile Home Internet or Calyx Institute Internet Membership';
+    }
+  }
+  // Check if AT&T is available
+  else if (answers[2]) {
+    // Check if AT&T provides a strong connection
+    if (answers[5]) {
+      provider = 'non-unlimited AT&T fixed wireless';
+    } else {
+      provider = 'AT&T Business Wireless Essentials (if comfortable with workarounds)';
+    }
+  }
+  // Check if Starlink is available
+  else if (answers[6]) {
+    provider = 'Starlink';
+  }
+  // If nothing is available, suggest Starlink RV and encourage the user to check the FCC Broadband Map
+  else {
+    provider = 'Starlink RV';
   }
 
-  if (tmobileAvailable) {
-    const tmobileStrongConnection = answers[1] === "yes" && parseInt(answers[1], 10) >= 3;
-    const tmobileResult = comfortableWithWorkarounds ? "T-Mobile Home Internet or Calyx Institute Internet Membership" : "T-Mobile Home Internet or Calyx Institute Internet Membership";
-    return tmobileStrongConnection ? tmobileResult : `${tmobileResult}. LTE router with external antenna or external antenna modification to hardware may be required.`;
+  // Add a message if external antenna may be required
+  if (!answers[3] || !answers[4] || !answers[5]) {
+    provider += ' (LTE router with external antenna or external antenna modification to hardware may be required)';
   }
 
-  if (attAvailable) {
-    const attStrongConnection = answers[2] === "yes" && parseInt(answers[2], 10) >= 3;
-    const attResult = comfortableWithWorkarounds ? "AT&T Business Wireless Essentials" : "non-unlimited AT&T fixed wireless";
-    return attStrongConnection ? attResult : `${attResult}. LTE router with external antenna or external antenna modification to hardware may be required.`;
-  }
-
-  if (starlinkAvailable) {
-    return "Starlink";
-  }
-
-  return "Starlink RV. Also suggest to visit the FCC Broadband Map to check their options.";
+  return provider;
 }
