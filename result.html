@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Result</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Result</h1>
+      <p id="resultText"></p>
+    </div>
+    <script>
+      const resultTextElement = document.getElementById("resultText");
+      const urlParams = new URLSearchParams(window.location.search);
+      const result = urlParams.get("result");
+      resultTextElement.innerHTML = result;
+    </script>
+  </body>
+</html>
