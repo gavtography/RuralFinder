@@ -1,69 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Rural Internet Questionnaire</title>
-  </head>
-  <body>
-    <h1>Rural Internet Questionnaire</h1>
-    <form id="questionnaire-form">
-      <!-- First question -->
-      <div>
-        <label for="verizon-available">Do you have Verizon service available?</label>
-        <div>
-          <input type="radio" name="verizon-available" value="yes"> Yes
-          <input type="radio" name="verizon-available" value="no"> No
-        </div>
-      </div>
-      
-      <!-- Second question -->
-      <div>
-        <label for="t-mobile-available">Do you have T-Mobile service available?</label>
-        <div>
-          <input type="radio" name="t-mobile-available" value="yes"> Yes
-          <input type="radio" name="t-mobile-available" value="no"> No
-        </div>
-      </div>
-      
-      <!-- Third question -->
-      <div>
-        <label for="at-t-available">Do you have AT&amp;T service available?</label>
-        <div>
-          <input type="radio" name="at-t-available" value="yes"> Yes
-          <input type="radio" name="at-t-available" value="no"> No
-        </div>
-      </div>
-      
-      <!-- Follow-up question if any of the first 3 questions are answered with "Yes" -->
-      <div class="follow-up" style="display:none;">
-        <label for="strong-connection">Does this carrier provide a strong connection at your location?</label>
-        <div>
-          <input type="radio" name="strong-connection" value="yes"> Yes
-          <input type="radio" name="strong-connection" value="no"> No
-        </div>
-      </div>
-      
-      <!-- Fourth question -->
-      <div>
-        <label for="starlink-available">Do you have Starlink available?</label>
-        <div>
-          <input type="radio" name="starlink-available" value="yes"> Yes
-          <input type="radio" name="starlink-available" value="no"> No
-        </div>
-      </div>
-      
-      <!-- Fifth question -->
-      <div>
-        <label for="workarounds">Are you comfortable trying unofficial (but legal) workarounds to getting access to rural internet?</label>
-        <div>
-          <input type="radio" name="workarounds" value="yes"> Yes
-          <input type="radio" name="workarounds" value="no"> No
-        </div>
-      </div>
-      
-      <button type="submit">Submit</button>
-    </form>
-    
-    <script src="data.js"></script>
-    <script src="script.js"></script>
-  </body>
+<head>
+	<meta charset="UTF-8">
+	<title>Rural Internet Provider Questionnaire</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<div id="question-container">
+		<h2 id="question-text">Do you have Verizon service available?</h2>
+		<div id="button-container">
+			<button id="yes-button" onclick="answerQuestion('yes')">Yes</button>
+			<button id="no-button" onclick="answerQuestion('no')">No</button>
+		</div>
+	</div>
+
+	<div id="result-container">
+		<h2 id="result-text">Result: </h2>
+		<p id="additional-text"></p>
+	</div>
+
+	<script src="script.js"></script>
+</body>
 </html>
+
