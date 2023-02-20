@@ -1,35 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <title>Rural Internet Provider Quiz</title>
-    <style>
-      .quiz-container {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-        text-align: center;
-      }
-
-      .quiz-question {
-        margin-top: 30px;
-      }
-
-      button[disabled] {
-        opacity: 0.5;
-        cursor: not-allowed;
-      }
-    </style>
+    <title>Questionnaire</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
-    <div class="quiz-container">
-      <h1>Rural Internet Provider Quiz</h1>
-      <form id="quiz-form">
-        <div id="quiz-questions"></div>
-        <button type="submit" id="next-button" disabled>Next</button>
-      </form>
+    <div class="container">
+      <h1>Questionnaire</h1>
+      <div class="question">
+        <span id="questionNumber"></span>
+        <span id="questionText"></span>
+      </div>
+      <div class="answer">
+        <button id="yesButton">Yes</button>
+        <button id="noButton">No</button>
+      </div>
+      <div class="counter">
+        <span id="count"></span>
+      </div>
     </div>
-
     <script src="data.js"></script>
     <script src="script.js"></script>
   </body>
