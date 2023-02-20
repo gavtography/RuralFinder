@@ -1,36 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Hello World Quiz</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8" />
+    <title>Rural Internet Provider Quiz</title>
+    <style>
+      .quiz-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .quiz-question {
+        margin-top: 30px;
+      }
+
+      button[disabled] {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    </style>
   </head>
   <body>
     <div class="quiz-container">
-      <h1>Hello World Quiz</h1>
-      <p>Choose the correct answer:</p>
+      <h1>Rural Internet Provider Quiz</h1>
       <form id="quiz-form">
-        <div class="quiz-question">
-          <h2>Hello World?</h2>
-          <label>
-            <input type="radio" name="answer" value="1">
-            1
-          </label>
-          <label>
-            <input type="radio" name="answer" value="2">
-            2
-          </label>
-          <label>
-            <input type="radio" name="answer" value="3">
-            3
-          </label>
-          <label>
-            <input type="radio" name="answer" value="4">
-            4
-          </label>
-        </div>
+        <div id="quiz-questions"></div>
         <button type="submit" id="next-button" disabled>Next</button>
       </form>
     </div>
-    <script src="app.js"></script>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
