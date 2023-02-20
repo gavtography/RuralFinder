@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Result</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
-  <body>
-    <div class="container">
-      <h1>Result</h1>
-      <p id="resultText"></p>
-    </div>
-    <script>
-      const resultTextElement = document.getElementById("resultText");
-      const urlParams = new URLSearchParams(window.location.search);
-      const result = urlParams.get("result");
-      resultTextElement.innerHTML = result;
-    </script>
-  </body>
+<head>
+  <title>Rural Internet Provider Quiz Results</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <h1>Your Rural Internet Provider</h1>
+  <p id="result-text">The best rural internet provider for your needs is:</p>
+  <p id="result">[Result will go here]</p>
+  
+  <p id="additional-info">[Additional info will go here]</p>
+
+  <script src="script.js"></script>
+</body>
 </html>
