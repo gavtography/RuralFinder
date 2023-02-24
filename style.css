@@ -1,67 +1,41 @@
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
-
 body {
 	font-family: Arial, sans-serif;
+	background-color: #F2F2F2;
 }
 
 .container {
-	max-width: 800px;
-	margin: 0 auto;
-	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 50px;
 }
 
 h1 {
+	font-size: 2.5em;
 	text-align: center;
-	margin-bottom: 20px;
+	margin-bottom: 30px;
 }
 
-.survey {
+#question {
+	font-size: 1.5em;
 	text-align: center;
-	margin-bottom: 20px;
-}
-
-.question {
-	margin-bottom: 20px;
-}
-
-.btn-group {
-	display: inline-flex;
+	margin-bottom: 30px;
+	padding: 20px;
+	background-color: #FFFFFF;
+	border-radius: 10px;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .btn {
-	padding: 10px;
+	font-size: 1em;
+	padding: 10px 20px;
+	margin: 10px;
+	border-radius: 10px;
 	border: none;
-	border-radius: 5px;
-	font-size: 18px;
-	font-weight: bold;
-	color: #fff;
-	background-color: #4CAF50;
 	cursor: pointer;
-	transition: background-color 0.3s;
+	transition: background-color 0.3s ease;
 }
 
 .btn:hover {
-	background-color: #3e8e41;
-}
-
-.progress {
-	height: 10px;
-	background-color: #ddd;
-}
-
-.result {
-	display: none;
-	text-align: center;
-	margin-top: 20px;
-}
-
-.result h2 {
-	font-size: 24px;
-	font-weight: bold;
-	margin-bottom: 10px;
-	color: #4CAF50;
+	background-color: #D3D3D3;
 }
