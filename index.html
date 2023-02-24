@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Rural Internet Provider Quiz</title>
-  <link rel="stylesheet" href="styles.css">
+	<title>Survey Template</title>
+	<link rel="stylesheet" type="text/css" href="survey.css">
 </head>
-
 <body>
-  <h1>Rural Internet Provider Quiz</h1>
-  <form id="quiz-form">
-    <div id="question-container"></div>
-    <button type="submit">Submit</button>
-  </form>
+	<div id="question-container">
+		<div id="question-text"></div>
+		<div id="button-container">
+			<button id="yes-button">Yes</button>
+			<button id="no-button">No</button>
+		</div>
+	</div>
 
-  <script src="questions.js"></script>
-  <script src="providers.js"></script>
-  <script src="app.js"></script>
+	<div id="result-container">
+		<div id="result-text">Success!</div>
+		<div id="additional-text"></div>
+	</div>
+
+	<script src="survey.js"></script>
 </body>
-
 </html>
