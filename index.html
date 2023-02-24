@@ -1,26 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Simple YES and NO Survey Template</title>
-	<link rel="stylesheet" href="style.css">
+	<title>YES/NO Survey Template</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 	<div class="container">
-		<h1>Simple YES and NO Survey</h1>
-		<div class="survey" id="survey">
-			<div class="question" id="question">
-				<p id="question-text"></p>
-				<div class="btn-group">
-					<button class="btn" id="yes-btn">Yes</button>
-					<button class="btn" id="no-btn">No</button>
-				</div>
-			</div>
-			<div class="progress" id="progress"></div>
-		</div>
-		<div class="result" id="result">
-			<h2 id="result-text"></h2>
+		<h1>YES/NO Survey Template</h1>
+		<div id="question"></div>
+		<div id="buttons">
+			<button id="yesBtn" class="btn">Yes</button>
+			<button id="noBtn" class="btn">No</button>
 		</div>
 	</div>
 	<script src="script.js"></script>
