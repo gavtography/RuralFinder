@@ -1,55 +1,33 @@
 const questions = [
-  { question: "Question 1?", answer: null },
-  { question: "Question 2?", answer: null },
-  { question: "Question 3?", answer: null },
-  { question: "Question 4?", answer: null },
-  { question: "Question 5?", answer: null },
-  { question: "Question 6?", answer: null }
+	"Question 1: Do you like pizza?",
+	"Question 2: Do you enjoy reading books?",
+	"Question 3: Have you ever traveled to another country?",
+	"Question 4: Do you like watching movies?",
+	"Question 5: Do you enjoy playing video games?",
+	"Question 6: Have you ever gone skydiving?"
 ];
 
-let currentQuestion = 0;
+let questionCounter = 0;
 
-const questionText = document.getElementById("question-text");
-const yesBtn = document.getElementById("yes-btn");
-const noBtn = document.getElementById("no-btn");
-const progress = document.getElementById("progress");
-const resultText = document.getElementById("result-text");
-const survey = document.getElementById("survey");
-const result = document.getElementById("result");
+const questionDiv = document.getElementById("question");
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
 
 function showQuestion() {
-  const question = questions[currentQuestion];
-  questionText.innerText = question.question;
-  yesBtn.addEventListener("click", () => {
-    question.answer = true;
-    nextQuestion();
-  });
-  noBtn.addEventListener("click", () => {
-    question.answer = false;
-    nextQuestion();
-  });
+	if (questionCounter < questions.length) {
+		questionDiv.innerHTML = questions[questionCounter];
+	} else {
+		questionDiv.innerHTML = "Success";
+		document.getElementById("buttons").style.display = "none";
+	}
 }
 
 function nextQuestion() {
-  currentQuestion++;
-  updateProgress();
-  if (currentQuestion < questions.length) {
-    showQuestion();
-  } else {
-    showResult();
-  }
+	questionCounter++;
+	showQuestion();
 }
 
-function updateProgress() {
-  progress.style.width = `${(currentQuestion / questions.length) * 100}%`;
-}
-
-function showResult() {
-  survey.style.display = "none";
-  result.style.display = "block";
-  const numCorrect = questions.filter(q => q.answer === true).length;
-  resultText.innerText = `You got ${numCorrect} out of ${questions.length} correct!`;
-}
+yesBtn.addEventListener("click", nextQuestion);
+noBtn.addEventListener("click", nextQuestion);
 
 showQuestion();
-
