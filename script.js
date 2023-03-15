@@ -52,6 +52,7 @@ const answers = [
     ["Yes", "No", "Yes", "No", "Yes", "No", "Starlink"],
     ["Yes", "No", "Yes", "No", "Yes", "Yes", "Starlink"],
     ["Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "You said yes to everything. You have options. Lucky."],
+    ["Yes", "Yes", "Yes", "Yes", "Yes", "No", "You said yes to basically everything. You have options. Lucky."],
 
 ];
 
