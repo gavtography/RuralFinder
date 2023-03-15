@@ -2,20 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Rural Internet Survey</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <title>Rural Internet Options</title>
 </head>
 <body>
     <div class="container">
-        <h1>Rural Internet Survey</h1>
-        <div id="question"></div>
-        <div id="buttons">
-            <button id="yes">Yes</button>
-            <button id="no">No</button>
+        <h1>Rural Internet Options Finder</h1>
+        <div class="question-container">
+            <p class="question"></p>
+            <button class="answer" data-answer="Yes">Yes</button>
+            <button class="answer" data-answer="No">No</button>
         </div>
-        <div id="result"></div>
+        <div class="result-container" style="display: none;">
+            <h2>Your Best Rural Internet Option:</h2>
+            <p class="result"></p>
+            <button class="restart">Restart</button>
+        </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
