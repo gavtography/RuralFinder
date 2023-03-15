@@ -1,173 +1,102 @@
-// Define survey questions as an array of objects
-const surveyQuestions = [
-  {
-    question: 'Do you have Verizon service available?',
-    yesResult: ['Verizon 4G or 5G Home Internet'],
-    noResult: []
-  },
-  {
-    question: 'Do you have T-Mobile service available?',
-    yesResult: ['T-Mobile Home Internet', 'Calyx Institute Internet Membership'],
-    noResult: []
-  },
-  {
-    question: 'Do you have AT&T service available?',
-    yesResult: ['Non-unlimited AT&T fixed wireless', 'AT&T Business Wireless Essentials'],
-    noResult: []
-  },
-  {
-    question: 'Do any one of those carriers provide a strong connection at your location?',
-    yesResult: [],
-    noResult: ['LTE router with external antenna or external antenna modification to hardware may be required']
-  },
-  {
-    question: 'Do you have Starlink available?',
-    yesResult: ['Starlink'],
-    noResult: []
-  },
-  {
-    question: 'Are you comfortable trying unofficial (but legal) workarounds to getting access to rural internet?',
-    yesResult: ['Verizon 4G Home Internet', 'Visible sim card in an LTE router', 'T-Mobile Home Internet', 'Calyx Institute Internet Membership', 'AT&T Business Wireless Essentials', 'Starlink'],
-    noResult: []
-  }
+const questions = [
+    "Do you have Verizon service available?",
+    "Do you have T-Mobile service available?",
+    "Do you have AT&T service available?",
+    "Do any one of those carriers provide a strong connection at your location?",
+    "Do you have Starlink available?",
+    "Are you comfortable trying unofficial (but legal) workarounds to getting access to rural internet?",
 ];
 
-// Set up survey variables
-let questionIndex = 0;
-let result = [];
+const answers = [
+    ["Yes", "No", "No", "Yes", "No", "No", "Verizon 5G Home Internet"],
+    ["Yes", "No", "No", "Yes", "No", "Yes", "Verizon 5G Home Internet"],
+    ["Yes", "No", "No", "No", "No", "Yes", "Verizon 4G Home Internet"],
+    ["Yes", "No", "No", "No", "No", "Yes", "Visible with LTE router"],
+    ["Yes", "No", "No", "No", "No", "Yes", "Visible with LTE router and external antenna"],
+    ["Yes", "No", "No", "No", "Yes", "No", "Starlink"],
+    ["Yes", "No", "No", "No", "Yes", "Yes", "Starlink"],
+    ["No", "Yes", "No", "Yes", "No", "No", "T-Mobile Home Internet"],
+    ["No", "Yes", "No", "Yes", "No", "Yes", "T-Mobile Home Internet"],
+    ["No", "Yes", "No", "No", "No", "Yes", "Calyx Institute T-Mobile"],
+    ["No", "Yes", "No", "No", "No", "Yes", "Calyx Institute T-Mobile"],
+    ["No", "Yes", "No", "No", "Yes", "No", "Starlink"],
+    ["No", "Yes", "No", "No", "Yes", "Yes", "Starlink"],
+    ["No", "No", "Yes", "Yes", "No", "No", "AT&T Wireless (Not Unlimited)"],
+    ["No", "No", "Yes", "Yes", "No", "Yes", "AT&T Wireless (Not Unlimited)"],
+    ["No", "No", "Yes", "No", "No", "Yes", "AT&T Business Wireless Essentials"],
+    ["No", "No", "Yes", "No", "No", "Yes", "Boost Mobile with LTE router AT&T"],
+    ["No", "No", "Yes", "No", "No", "Yes", "Boost Mobile with LTE router with external antenna"],
+    ["No", "No", "Yes", "No", "Yes", "No", "Starlink"],
+    ["No", "No", "Yes", "No", "Yes", "Yes", "Starlink"],
+    ["Yes", "No", "No", "No", "No", "No", "Verizon 4G Home Internet"],
+    ["Yes", "No", "No", "No", "No", "No", "StraightTalk Home Internet Verizon"],
+    ["No", "Yes", "No", "No", "No", "No", "T-Mobile Home Internet"],
+    ["No", "Yes", "No", "No", "No", "No", "Calyx Institute T-Mobile"],
+    ["No", "No", "Yes", "No", "No", "No", "AT&T Wireless (Not Unlimited)"],
+    ["No", "No", "Yes", "No", "No", "No", "AT&T Business Wireless Essentials"],
+    ["Yes", "No", "No", "No", "No", "Yes", "Starlink RV"],
+    ["No", "Yes", "No", "No", "No", "Yes", "Starlink RV"],
+    ["No", "No", "Yes", "No", "No", "Yes", "Starlink RV"],
+    ["No", "No", "No", "No", "No", "No", "FCC Broadband Map"],
+    ["No", "No", "No", "No", "No", "Yes", "FCC Broadband Map"],
 
-// Get HTML elements
-const questionElement = document.getElementById('question');
-const yesButton = document.getElementById('yesBtn');
-const noButton = document.getElementById('noBtn');
+];
 
-// Function to display the next question
-function displayNextQuestion() {
-  // Get the next question
-  const question = surveyQuestions[questionIndex].question;
-  // Display the question text
-  questionElement.textContent = question;
+let currentQuestionIndex = 0;
+let userAnswers = [];
+
+const questionElement = document.querySelector(".question");
+const answerElements = document.querySelectorAll(".answer");
+const resultContainer = document.querySelector(".result-container");
+const resultText = document.querySelector(".result");
+const restartButton = document.querySelector(".restart");
+
+function displayQuestion() {
+    questionElement.textContent = questions[currentQuestionIndex];
 }
 
-// Function to add a result to the result array and move to the next question
-function addResultAndMoveToNextQuestion(resultToAdd) {
-  // Add the result to the result array
-  result = result.concat(resultToAdd);
-  // Move to the next question
-  questionIndex++;
-  // If we have displayed all the questions, display the final result
-  if (questionIndex >= surveyQuestions.length) {
-    displayFinalResult();
-  } else {
-    // Display the next question
-    displayNextQuestion();
-  }
-}
-
-// Function to display the final result
-function displayFinalResult() {
-  let finalResult;
-  if (result.includes('Starlink')) {
-    if (result.includes('Verizon 4G Home Internet') || result.includes('Visible sim card in an LTE router') || result.includes('T-Mobile Home Internet') || result.includes('Calyx Institute Internet Membership') || result.includes('AT&T Business Wireless Essentials')) {
-      finalResult = 'Starlink';
-    } else {
-      finalResult = 'Starlink RV. Also suggest to visit the FCC Broadband Map to check your options.';
+function findBestOption() {
+    for (let answer of answers) {
+        let match = true;
+        for (let i = 0; i < 6; i++) {
+            if (answer[i] !== userAnswers[i]) {
+                match = false;
+                break;
+            }
+        }
+        if (match) {
+            return answer[6];
+        }
     }
-  } else {
-    finalResult = result.join(', ');
-    if (result.length === 0) {
-      finalResult = 'No options found. Suggest to visit the FCC Broadband Map to check your options.';
-    }
-  }
-  // Display the final result text
-  questionElement.textContent = finalResult;
-  // Hide the Yes and No buttons
-  yesButton.style.display = 'none';
-  noButton.style.display = 'none';
+    return "FCC Broadband Map";
 }
 
-// Event listener for Yes button
-yesBtn.addEventListener("click", function() {
-  // Check if a response has been selected
-  if (!responseSelected) {
-    alert("Please select a response before continuing");
-    return;
-  }
-  
-  // Check if this is the last question
-  if (currentQuestionIndex === questions.length - 1) {
-    showResult();
-  } else {
-    // Increment current question index and display the next question
-    currentQuestionIndex++;
-    displayQuestion();
-  }
+function showResult(result) {
+    questionElement.parentNode.style.display = "none";
+    resultText.textContent = result;
+    resultContainer.style.display = "flex";
+}
+
+answerElements.forEach((answerElement) => {
+    answerElement.addEventListener("click", () => {
+        userAnswers[currentQuestionIndex] = answerElement.dataset.answer;
+        currentQuestionIndex++;
+
+        if (currentQuestionIndex === questions.length) {
+            const bestOption = findBestOption();
+            showResult(bestOption);
+        } else {
+            displayQuestion();
+        }
+    });
 });
 
-// Event listener for No button
-noBtn.addEventListener("click", function() {
-  // Check if a response has been selected
-  if (!responseSelected) {
-    alert("Please select a response before continuing");
-    return;
-  }
-  
-  // Check if this is the last question
-  if (currentQuestionIndex === questions.length - 1) {
-    showResult();
-  } else {
-    // Increment current question index and display the next question
-    currentQuestionIndex++;
+restartButton.addEventListener("click", () => {
+    currentQuestionIndex = 0;
+    userAnswers = [];
+    questionElement.parentNode.style.display = "flex";
+    resultContainer.style.display = "none";
     displayQuestion();
-  }
 });
 
-// Function to display the result based on the user's responses
-function showResult() {
-  let result;
-  let response = responses[responses.length - 1];
-  let verizon = responses.includes("verizon");
-  let tMobile = responses.includes("tMobile");
-  let att = responses.includes("att");
-  let starlink = responses.includes("starlink");
-  let workarounds = responses.includes("workarounds");
-  let strongConnection = responses.includes("strongConnection");
-  
-  if (verizon) {
-    if (workarounds) {
-      result = "Verizon 4G Home Internet or Visible sim card in an LTE router";
-    } else {
-      result = "Verizon 4G or Verizon 5G Home Internet";
-    }
-  } else if (tMobile) {
-    if (workarounds) {
-      result = "T-Mobile Home Internet or Calyx Institute Internet Membership";
-    } else {
-      result = "T-Mobile Home Internet or Calyx Institute Internet Membership";
-    }
-  } else if (att) {
-    if (workarounds) {
-      result = "AT&T Business Wireless Essentials";
-    } else {
-      result = "non-unlimited AT&T fixed wireless";
-    }
-  } else if (starlink) {
-    result = "Starlink";
-  } else {
-    result = "Starlink RV. Visit the FCC Broadband Map to check your options.";
-  }
-  
-  if (!strongConnection) {
-    result += " LTE router with external antenna or external antenna modification to hardware may be required";
-  }
-  
-  // Hide the question and button elements
-  question.style.display = "none";
-  buttons.style.display = "none";
-  
-  // Display the result
-  let resultElement = document.createElement("div");
-  resultElement.classList.add("result");
-  resultElement.textContent = result;
-  container.appendChild(resultElement);
-}
+displayQuestion();
