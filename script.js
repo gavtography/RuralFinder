@@ -19,7 +19,7 @@ const answers = [
     ["No", "No", "Yes", "Yes", "No", "No", "AT&T Wireless (Not Unlimited)"],
     ["No", "No", "Yes", "Yes", "No", "Yes", "AT&T Business Wireless Essentials"],
     ["No", "No", "Yes", "Yes", "Yes", "No", "AT&T Wireless (Not Unlimited) or Starlink"],
-    ["No", "No", "Yes", "Yes", "Yes", "Yes", "AT&T Wireless (Not Unlimited) or Starlink"],
+    ["No", "No", "Yes", "Yes", "Yes", "Yes", "AT&T Business Wireless Essentials or Starlink"],
     ["No", "No", "Yes", "No", "No", "Yes", "AT&T Business Wireless Essentials or Boost Mobile with LTE router with external antenna"],
     ["No", "No", "Yes", "No", "Yes", "No", "Starlink"],
     ["No", "No", "Yes", "No", "Yes", "Yes", "Starlink"],
@@ -51,6 +51,7 @@ const answers = [
     ["Yes", "No", "Yes", "No", "No", "Yes", "AT&T Business Wireless Essentials or Boost Mobile with LTE router with external antenna or Visible with LTE router and external antenna"],
     ["Yes", "No", "Yes", "No", "Yes", "No", "Starlink"],
     ["Yes", "No", "Yes", "No", "Yes", "Yes", "Starlink"],
+    ["Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "You said yes to everything. You have options. Lucky."],
 
 ];
 
